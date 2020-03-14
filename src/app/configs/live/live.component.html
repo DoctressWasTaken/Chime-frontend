@@ -1,0 +1,80 @@
+<div class="wrapper" style="max-width: 500px; position: relative; height: 100vh;">
+<div class="menu">
+
+
+    <h1>Stats</h1>
+    <div class="stats">
+        <div class="numbers wins">
+            {{wins}}
+        </div>
+        <div class="change wins" *ngIf="local_wins < 0">
+            {{local_wins}}
+        </div>
+        <div class="change wins" *ngIf="local_wins > 0">
+            +{{local_wins}}
+        </div>
+        <div class="buttons wins">
+            <button (click)="change_wins(1)">+</button>
+            <button (click)="change_wins(-1)">-</button>
+        </div>
+        <div class="numbers sep">
+        -
+        </div>
+        <div class="buttons reset">
+            <button (click)="reset()">RESET</button>
+        </div>
+        <div class="numbers losses">
+            {{losses}}
+        </div>
+        <div class="change losses" *ngIf="local_losses < 0">
+            {{local_losses}}
+        </div>
+        <div class="change losses" *ngIf="local_losses > 0">
+            +{{local_losses}}
+        </div>
+        <div class="buttons losses">
+            <button (click)="change_losses(1)">+</button>
+            <button (click)="change_losses(-1)">-</button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="accounts">
+
+        <input [(ngModel)]='account_add' id="account_add">
+        <select>
+            <option value="na1">NA</option>
+            <option value="euw1">EUW</option>
+        </select>
+        <button (click)="addAccount()">Add</button>
+        <table>
+            <tr *ngFor="let acc of accounts">
+                <td>{{acc.name}}</td>
+                <td>{{acc.server}}</td>
+                <td>Force Active</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--
+<div class="score">
+<table>
+    <tr>
+        <td>
+            <div class="value" contenteditable>{{wins}}</div>
+            <div class="change left" *ngIf="local_wins">{{local_wins}}</div>
+            <div class="change left" *ngIf="!local_wins">{{local_wins}}</div>
+        </td>
+        <td> - </td>
+        <td>
+            <div class="value" contenteditable>{{losses}}</div>
+            <div class="change right" *ngIf="local_losses">{{local_losses}}</div>
+            <div class="change right" *ngIf="!local_losses">{{local_losses}}</div>
+        </td>
+    </tr>
+</table>
+</div>
+!-->
+</div>  

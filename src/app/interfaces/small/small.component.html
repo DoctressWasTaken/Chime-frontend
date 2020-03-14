@@ -1,0 +1,17 @@
+<div *ngIf="ready" style="padding:10px;margin:10px;">
+    <div class="widget">
+                <div class="wl">
+                    <span class="win">{{wins}}</span>
+                    <span>-</span>
+                    <span class="loss">{{losses}}</span>
+                </div>
+                <div class="separator">
+                </div>
+                <div class="standing">
+                    <span>
+                        <p id="server">
+                        {{currentAccount.server}}</p>
+                        {{currentAccount.ranking}} </span>
+                </div>
+    </div>
+</div>
