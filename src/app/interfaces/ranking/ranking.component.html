@@ -1,11 +1,11 @@
-<div *ngIf="manager.currentAccount" style="padding:10px;margin:10px;">
+<div *ngIf="manager.currentAccount" style="padding:40px 20px;margin:10px;">
   <div class="widget">
     <div class="wl">
       <span class="win">{{manager.wins}}</span>
       <span>-</span>
       <span class="loss">{{manager.losses}}</span>
     </div>
-    <div class="separator">
+    <div class="logo" [ngStyle]="{'background-image': 'url(\'assets/emblems/'+ manager.rank + '_Emblem.png\')'}">
     </div>
     <div class="standing" [ngClass]="{'miniSeries': manager.currentAccount.miniSeries}">
       <p id="server">

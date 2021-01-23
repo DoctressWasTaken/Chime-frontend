@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Small</title>
+  <style>
+    body {
+      padding: 0;
+    }
+
+    iframe {
+      border: none;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    html {
+      margin: 0;
+      overflow: hidden;
+    }
+    p{
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<iframe id='index'>
+
+</iframe>
+<script>
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const token = urlParams.get('app_token')
+  console.log("App token", token);
+  document.getElementById('index').src = "../index.html?out=ranking&app_token=" + token;
+
+</script>
+</body>
+</html>

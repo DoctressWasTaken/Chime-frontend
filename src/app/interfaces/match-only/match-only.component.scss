@@ -1,0 +1,47 @@
+@import "../../app.component.scss";
+
+.widget {
+
+  width: 300px;
+  height: 80px;
+  border: solid 3px $gold;
+  background: rgba($background, 0.85);
+  box-shadow: black 0 0 8px 1px;
+  color: $gold;
+
+  div {
+    float: left;
+  }
+
+  .wl {
+    width: 274px;
+    padding: 0 0;
+    margin: -10px 10px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+
+    letter {
+      font-size: 80px;
+      vertical-align: middle;
+      height: 100%;
+      position: relative;
+      top: -2px;
+      margin: 0 3px;
+      line-height: 100px;
+    }
+    name {
+      top: 10px;
+      font-size: 20px;
+      position: absolute;
+    }
+  }
+
+}
+.win {
+  color: $blue;
+}
+
+.loss {
+  color: $red;
+}

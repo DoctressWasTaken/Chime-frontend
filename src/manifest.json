@@ -1,0 +1,79 @@
+{
+  "name": "Chime",
+  "version": "0.2.5",
+  "buildPath": "",
+  "permissions": ["slobs.scenes-sources", "slobs.obs-settings"],
+  "supportedPlatforms": ["twitch", "mixer", "youtube", "facebook"],
+  "sources": [
+    {
+      "type": "browser_source",
+      "name": "Chime - Basic",
+      "id": "chime_small",
+      "about": {
+        "description": "Game score tracker",
+        "bullets": [
+          "Tracks daily score",
+          "Tracks current ranking",
+          "League of Legends"
+        ],
+        "bannerImage": "assets/banner/banner_small.png"
+      },
+      "file": "entrypoints/small.html",
+      "initialSize": {
+        "type": "absolute",
+        "width": 845,
+        "height": 125
+      }
+    },
+    {
+      "type": "browser_source",
+      "name": "Chime - Fancy",
+      "id": "chime_fancy",
+      "about": {
+        "description": "Game score tracker",
+        "bullets": [
+          "Tracks daily score",
+          "Tracks current ranking",
+          "League of Legends"
+        ],
+        "bannerImage": "assets/banner/banner_fancy.png"
+      },
+      "file": "entrypoints/ranking.html",
+      "initialSize": {
+        "type": "absolute",
+        "width": 990,
+        "height": 170
+      }
+    },
+    {
+      "type": "browser_source",
+      "name": "Chime - Win/Loss Only",
+      "id": "chime_match_only",
+      "about": {
+        "description": "Tracker showing exclusively wins and losses, no ranking.",
+        "bullets": [
+          "Tracks daily score",
+          "Tracks current ranking",
+          "League of Legends"
+        ],
+        "bannerImage": "assets/banner/banner_match_only.png"
+      },
+      "file": "entrypoints/match_only.html",
+      "initialSize": {
+        "type": "absolute",
+        "width": 340,
+        "height": 120
+      }
+    }
+  ],
+  "pages": [
+    {
+      "slot": "top_nav",
+      "file": "entrypoints/interface.html",
+      "popOutSize": {
+        "width": 500,
+        "height": 875
+      }
+    }
+  ]
+}

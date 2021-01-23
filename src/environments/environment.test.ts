@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: "wss://chime.lightshield.dev/"
+  url: "wss://dev.chime.lightshield.dev/"
 
 };

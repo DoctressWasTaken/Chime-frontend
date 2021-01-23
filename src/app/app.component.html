@@ -1,16 +1,16 @@
 <ng-container *ngIf="out == 'small' || out == 'all'">
-    <app-small
-        [currentAccount]='current'
-        [wins]='wins'
-        [ready]='ready'
-        [losses]='losses'
-        ></app-small>
+    <app-small></app-small>
 </ng-container>
-<ng-container  *ngIf="out == 'live' || out == 'all'">
-    <app-live
-        [wins]='wins'
-        [losses]='losses'
-        [accounts]='accounts'
-        [currentAccount]='current'
-        ></app-live>
+<ng-container  *ngIf="out == 'ranking' || out == 'all'">
+  <app-ranking></app-ranking>
+</ng-container>
+<ng-container  *ngIf="out == 'large' || out == 'all'">
+  <app-large></app-large>
+</ng-container>
+<ng-container  *ngIf="out == 'match_only' || out == 'all'">
+  <app-match-only></app-match-only>
+</ng-container>
+
+<ng-container  *ngIf="out == 'interface' || out == 'all'">
+    <app-live></app-live>
 </ng-container>

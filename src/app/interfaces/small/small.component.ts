@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {ConnectionManagerService} from '../../services/connection-manager.service';
 
 @Component({
   selector: 'app-small',
@@ -6,18 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./small.component.scss']
 })
 export class SmallComponent implements OnInit {
-    
-    @Input() currentAccount: any;
-    @Input() wins: number;
-    @Input() losses: number;
-    @Input() ready: Boolean;
 
-    constructor() {
-        console.log(this.currentAccount);
+    manager: ConnectionManagerService;
+
+    constructor(
+      private _manager: ConnectionManagerService
+    ) {
+        this.manager = _manager;
         }
 
   ngOnInit() {
-    console.log(this.currentAccount);
   }
 
 }

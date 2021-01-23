@@ -1,80 +1,102 @@
 <div class="wrapper" style="max-width: 500px; position: relative; height: 100vh;">
-<div class="menu">
-
+  <div class="menu">
+    <div class="connection_tracker"
+         [ngClass]="{
+      'disconnected': manager.status === 'disconnected',
+      'connecting': manager.status === 'connected',
+      'connected': manager.ready}">
+      <ng-container *ngIf="manager.status === 'disconnected'">
+        ❌
+      </ng-container>
+      <ng-container *ngIf="manager.status === 'connected'">
+        ✅
+      </ng-container>
+    </div>
 
     <h1>Stats</h1>
     <div class="stats">
-        <div class="numbers wins">
-            {{wins}}
-        </div>
-        <div class="change wins" *ngIf="local_wins < 0">
-            {{local_wins}}
-        </div>
-        <div class="change wins" *ngIf="local_wins > 0">
-            +{{local_wins}}
-        </div>
-        <div class="buttons wins">
-            <button (click)="change_wins(1)">+</button>
-            <button (click)="change_wins(-1)">-</button>
-        </div>
-        <div class="numbers sep">
+      <div class="numbers wins">
+        {{manager.wins}}
+      </div>
+      <div class="change wins" *ngIf="local_wins < 0">
+        {{local_wins}}
+      </div>
+      <div class="change wins" *ngIf="local_wins > 0">
+        +{{local_wins}}
+      </div>
+      <div class="buttons wins">
+        <button class="btn" (click)="change_wins(1)">+</button>
+        <button class="btn" (click)="change_wins(-1)">-</button>
+      </div>
+      <div class="numbers sep">
         -
-        </div>
-        <div class="buttons reset">
-            <button (click)="reset()">RESET</button>
-        </div>
-        <div class="numbers losses">
-            {{losses}}
-        </div>
-        <div class="change losses" *ngIf="local_losses < 0">
-            {{local_losses}}
-        </div>
-        <div class="change losses" *ngIf="local_losses > 0">
-            +{{local_losses}}
-        </div>
-        <div class="buttons losses">
-            <button (click)="change_losses(1)">+</button>
-            <button (click)="change_losses(-1)">-</button>
-        </div>
+      </div>
+      <div class="buttons reset">
+        <button class="btn" (click)="reset()">RESET</button>
+      </div>
+      <div class="numbers losses">
+        {{manager.losses}}
+      </div>
+      <div class="change losses" *ngIf="local_losses < 0">
+        {{local_losses}}
+      </div>
+      <div class="change losses" *ngIf="local_losses > 0">
+        +{{local_losses}}
+      </div>
+      <div class="buttons losses">
+        <button class="btn" (click)="change_losses(1)">+</button>
+        <button class="btn" (click)="change_losses(-1)">-</button>
+      </div>
     </div>
 
     <hr/>
 
     <div class="accounts">
-
-        <input [(ngModel)]='account_add' id="account_add">
-        <select>
+      <p>Add account (Duplicate accounts will be ignored)</p>
+      <div class="form-row">
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]='account_add' id="account_add" placeholder="Account Name">
+        </div>
+        <div class="col-3">
+          <select class="form-control" [(ngModel)]="server">
             <option value="na1">NA</option>
             <option value="euw1">EUW</option>
-        </select>
-        <button (click)="addAccount()">Add</button>
-        <table>
-            <tr *ngFor="let acc of accounts">
-                <td>{{acc.name}}</td>
-                <td>{{acc.server}}</td>
-                <td>Force Active</td>
-            </tr>
-        </table>
+            <option value="kr">KR</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" style="margin: 10px 0">
+        <div class="col-2 offset-10" style="padding: 0">
+          <button class="btn btn-outline-secondary" style="float: right" (click)="addAccount()">Add</button>
+        </div>
+      </div>
+      <table class="table">
+        <tr *ngFor="let acc of manager.accounts">
+          <td>{{acc.name}}
+            <span *ngIf="manager.currentId === acc.id" class="active_marker">Active</span></td>
+          <td>{{acc.server}}</td>
+          <td>
+            <button *ngIf="acc.id !== manager.locked" class="btn btn-outline-primary" (click)="forceActive(acc.id)">Lock
+            </button>
+            <button *ngIf="acc.id === manager.locked" class="btn btn-primary" (click)="forceActive(acc.id)">Unlock
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-outline-danger" (click)="removeAccount(acc.id)">Remove</button>
+          </td>
+        </tr>
+      </table>
     </div>
+    <div class="comments">
+      <p>Known bugs: <br/>
+        - If you remove all the accounts data of the latest one will stay visible <br/>
+        - It will take a little while between separate instances to update <br/>
+      </p>
+    </div>
+    <div class="disclaimer">
+      Chime isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially
+      involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks
+      or registered trademarks of Riot Games, Inc.
+    </div>
+  </div>
 </div>
-
-<!--
-<div class="score">
-<table>
-    <tr>
-        <td>
-            <div class="value" contenteditable>{{wins}}</div>
-            <div class="change left" *ngIf="local_wins">{{local_wins}}</div>
-            <div class="change left" *ngIf="!local_wins">{{local_wins}}</div>
-        </td>
-        <td> - </td>
-        <td>
-            <div class="value" contenteditable>{{losses}}</div>
-            <div class="change right" *ngIf="local_losses">{{local_losses}}</div>
-            <div class="change right" *ngIf="!local_losses">{{local_losses}}</div>
-        </td>
-    </tr>
-</table>
-</div>
-!-->
-</div>  

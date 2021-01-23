@@ -1,0 +1,146 @@
+@import "../../app.component.scss";
+
+.widget {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  border: solid 3px $gold;
+  background: $background;
+  box-shadow: 0 0 10px black;
+
+  .logo {
+    margin: 10px 10px 20px 25px;
+    height: 200px;
+    width: 180px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 50;
+    -webkit-filter: drop-shadow(0 0 5px white);
+    filter: drop-shadow(0 0 5px white);
+  }
+  .wl {
+    position: absolute;
+    width: 500px;
+    right: 50px;
+    top: 10px;
+    text-align: center;
+    height: 140px;
+    line-height: 140px;
+    span {
+      font-size: 160px;
+      text-align: center;
+      height: 160px;
+      &.win {
+        color: $blue;
+      }
+      &.loss {
+        color: $red;
+      }
+      &.neutral {
+        color: $gold;
+        margin: 0 15px;
+      }
+    }
+  }
+  .standing {
+    position: absolute;
+    top: 150px;
+    height: 50px;
+    width: 500px;
+    right: 0px;
+    margin-right: 50px;
+    text-align: center;
+
+    span {
+      font-size: 45px;
+      color: $gold;
+    }
+
+    .server {
+      display: inline;
+      opacity: 0.8;
+    }
+
+    .separator {
+      height: 3px;
+      background: $gold;
+      width: 700px;
+      position: absolute;
+      right: 0;
+
+      &.separator-top {
+        width: 500px;
+
+      }
+
+      .series {
+        height: 30px;
+        position: relative;
+        top: -15px;
+        width: 200px;
+        margin-left: 250px;
+        background-color: $background;
+        border: solid 2px $gold;
+        border-radius: 15px;
+        text-align: center;
+        span {
+          color: $gold;
+          padding: 0 10px;
+          font-size: 20px;
+          position: relative;
+          top: -1px;
+          &.win {
+            color: $blue;
+          }
+          &.loss {
+            color: $red;
+          }
+        }
+
+      }
+    }
+  }
+  .history {
+    position: absolute;
+    height: 140px;
+    width: 98%;
+    margin: 9px 1%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+
+    span {
+      width: 77px;
+      height: 140px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 10px;
+      font-size: 60px;
+      float: left;
+      color: $gold;
+
+      &.win {
+        box-shadow: 0 0 4px 4px $blue inset;
+      }
+      &.loss {
+        box-shadow: 0 0 4px 4px $red inset;
+      }
+      &.remake {
+        box-shadow: 0 0 4px 4px grey inset;
+      }
+
+    }
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 23px;
+  height: 394px;
+  left: 23px;
+  width: 794px;
+  background: $background;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

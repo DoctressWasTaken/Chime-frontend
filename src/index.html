@@ -3,11 +3,29 @@
 <head>
   <meta charset="utf-8">
   <title>Frontend</title>
-  <base href="/">
+  <base href=".">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.streamlabs.com/slobs-platform/lib/streamlabs-platform.min.js"></script>
+
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const out = urlParams.get('out')
+    console.log("Out", out);
+  </script>
+  <script>
+    const colors = ['red', 'blue', 'green', 'orange', 'purple', 'black', 'gold'];
+
+    const streamlabs = window.Streamlabs;
+  </script>
+  <style>
+    html {
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
   <app-root></app-root>
