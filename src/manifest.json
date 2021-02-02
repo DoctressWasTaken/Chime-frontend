@@ -1,6 +1,6 @@
 {
   "name": "Chime",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "buildPath": "",
   "permissions": ["slobs.scenes-sources", "slobs.obs-settings"],
   "supportedPlatforms": ["twitch", "mixer", "youtube", "facebook"],
