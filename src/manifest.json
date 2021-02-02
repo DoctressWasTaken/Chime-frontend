@@ -1,6 +1,6 @@
 {
   "name": "Chime",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "buildPath": "",
   "permissions": ["slobs.scenes-sources", "slobs.obs-settings"],
   "supportedPlatforms": ["twitch", "mixer", "youtube", "facebook"],
@@ -12,9 +12,10 @@
       "about": {
         "description": "Game score tracker",
         "bullets": [
-          "Tracks daily score",
-          "Tracks current ranking",
-          "League of Legends"
+          "Track daily score",
+          "Tracks current ranking across multiple accounts",
+          "Automatic swaps to last played account",
+          "Automatic updates rank and win/loss"
         ],
         "bannerImage": "assets/banner/banner_small.png"
       },
@@ -32,9 +33,10 @@
       "about": {
         "description": "Game score tracker",
         "bullets": [
-          "Tracks daily score",
-          "Tracks current ranking",
-          "League of Legends"
+          "Track daily score",
+          "Tracks current ranking across multiple accounts",
+          "Automatic swaps to last played account",
+          "Automatic updates rank and win/loss"
         ],
         "bannerImage": "assets/banner/banner_fancy.png"
       },
@@ -52,9 +54,8 @@
       "about": {
         "description": "Tracker showing exclusively wins and losses, no ranking.",
         "bullets": [
-          "Tracks daily score",
-          "Tracks current ranking",
-          "League of Legends"
+          "Track daily score",
+          "Automatic updates win/loss"
         ],
         "bannerImage": "assets/banner/banner_match_only.png"
       },
