@@ -1,6 +1,7 @@
 {
   "name": "Chime",
-  "version": "0.2.7",
+  "version": "0.3.3b",
+  "icon": "assets/Logo_270_170_transparent.png",
   "buildPath": "",
   "permissions": ["slobs.scenes-sources", "slobs.obs-settings"],
   "supportedPlatforms": ["twitch", "mixer", "youtube", "facebook"],
@@ -70,11 +71,7 @@
   "pages": [
     {
       "slot": "top_nav",
-      "file": "entrypoints/interface.html",
-      "popOutSize": {
-        "width": 500,
-        "height": 875
-      }
+      "file": "entrypoints/interface.html"
     }
   ]
 }

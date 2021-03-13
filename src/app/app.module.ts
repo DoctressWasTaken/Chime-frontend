@@ -11,6 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { RankingComponent } from './interfaces/ranking/ranking.component';
 import { LargeComponent } from './interfaces/large/large.component';
 import { MatchOnlyComponent } from './interfaces/match-only/match-only.component';
+import { AccountComponent } from './configs/live/panel/accounts/account/account.component';
+import { StatusComponent } from './configs/live/panel/status/status.component';
+import { AccountsComponent } from './configs/live/panel/accounts/accounts.component';
+import { ConnectionStatusComponent } from './configs/live/panel/connection-status/connection-status.component';
+import { ResetComponent } from './configs/live/panel/reset/reset.component';
+import { SampleComponent } from './configs/live/panel/sample/sample.component';
+import { NotificationComponent } from './configs/live/panel/notification/notification.component';
+import {DisclaimerComponent} from './configs/live/panel/disclaimer/disclaimer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +27,15 @@ import { MatchOnlyComponent } from './interfaces/match-only/match-only.component
     LiveComponent,
     RankingComponent,
     LargeComponent,
-    MatchOnlyComponent
+    MatchOnlyComponent,
+    AccountComponent,
+    StatusComponent,
+    AccountsComponent,
+    ConnectionStatusComponent,
+    ResetComponent,
+    SampleComponent,
+    NotificationComponent,
+    DisclaimerComponent
   ],
   imports: [
     BrowserModule,

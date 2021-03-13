@@ -1,0 +1,13 @@
+<div class="col xl4 l4 m6 s6" *ngIf="manager.settings">
+  <div class="card blue-grey darken-2" id="notification">
+    <div class="card-content white-text" style="position: relative">
+      <span class="card-title">Notification</span>
+      <ng-container *ngIf="manager.settings.notification">
+        {{manager.settings.notification}}
+      </ng-container>
+      <ng-container *ngIf="!manager.settings.notification">
+        Nothing to report
+      </ng-container>
+    </div>
+  </div>
+</div>

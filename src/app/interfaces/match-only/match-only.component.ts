@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ConnectionManagerService} from '../../services/connection-manager.service';
+import {ManagerService} from '../../services/manager.service';
+import {StatsManagerService} from '../../services/pipelines/stats-manager.service';
+import {AccountManagerService} from '../../services/pipelines/account-manager.service';
 
 @Component({
   selector: 'app-match-only',
@@ -8,15 +10,15 @@ import {ConnectionManagerService} from '../../services/connection-manager.servic
 })
 export class MatchOnlyComponent implements OnInit {
 
-  manager: ConnectionManagerService;
+  stats: any;
 
-  constructor(
-    private _manager: ConnectionManagerService
-  ) {
-    this.manager = _manager;
+  constructor(private stats_manager: StatsManagerService,
+              private account_manager: AccountManagerService) {
+    this.stats_manager.stats.subscribe((stats) => {
+      this.stats = stats;
+    });
   }
-
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

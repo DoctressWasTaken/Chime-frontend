@@ -17,8 +17,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 50;
-    -webkit-filter: drop-shadow(0 0 5px white);
-    filter: drop-shadow(0 0 5px white);
+    -webkit-filter: drop-shadow(0 0 5px black);
+    filter: drop-shadow(0 0 5px black);
   }
 
   div {
@@ -58,14 +58,14 @@
     text-align: center;
     height: 100%;
     position: relative;
-    top: -2px;
+    top: 0;
     padding: 0 10px;
     &.miniSeries {
       padding-top: 8px;
     }
 
     span {
-      font-size: 55px;
+      font-size: 50px;
       color: $gold;
       vertical-align: middle;
     }
@@ -75,6 +75,7 @@
       color: white;
       top: 1px;
       left: -8px;
+      margin: 0;
     }
     .series {
       width: 100%;

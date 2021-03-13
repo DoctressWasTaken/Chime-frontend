@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ConnectionManagerService} from '../../services/connection-manager.service';
+import {ManagerService} from '../../services/manager.service';
+import {StatsManagerService} from '../../services/pipelines/stats-manager.service';
 
 @Component({
   selector: 'app-large',
@@ -8,15 +9,15 @@ import {ConnectionManagerService} from '../../services/connection-manager.servic
 })
 export class LargeComponent implements OnInit {
 
-  manager: ConnectionManagerService;
+  stats: any;
 
-  constructor(
-    private _manager: ConnectionManagerService
-  ) {
-    this.manager = _manager;
+  constructor(private stats_manager: StatsManagerService) {
+    this.stats_manager.stats.subscribe((stats) => {
+      this.stats = stats;
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

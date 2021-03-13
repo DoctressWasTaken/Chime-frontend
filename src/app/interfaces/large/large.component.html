@@ -1,25 +1,25 @@
 <div style="padding: 10px; margin:10px;">
-  <div class="widget" *ngIf="manager.currentAccount">
-    <div class="logo" [ngStyle]="{'background-image': 'url(\'assets/emblems/' + manager.rank + '_Emblem.png\')'}">
+  <div class="widget" *ngIf="stats">
+    <div class="logo" [ngStyle]="{'background-image': 'url(\'assets/emblems/' + stats.tier + '_Emblem.png\')'}">
 
     </div>
 
     <div class="wl">
-      <span class="win">{{manager.wins}}</span>
+      <span class="win">{{stats.wins}}</span>
       <span class="neutral" >-</span>
-      <span class="loss">{{manager.losses}}</span>
+      <span class="loss">{{stats.losses}}</span>
     </div>
     <div class="standing" >
       <div class="separator separator-top separator-top"></div>
 
       <span>
                         <span class="server">
-                            [{{manager.currentAccount.server}}]</span>
-        {{manager.currentAccount.ranking}}
+                            [{{stats.server}}]</span>
+        {{stats.tier}} {{stats.division}} {{stats.lp}} LP
                     </span>
       <div class="separator">
-        <div *ngIf="manager.currentAccount.miniSeries" class="series">
-          <ng-container *ngFor="let game of manager.currentAccount.miniSeries">
+        <div *ngIf="stats.miniSeries" class="series">
+          <ng-container *ngFor="let game of stats.miniSeries">
             <span [ngClass]="{'win': game==='O', 'loss': game==='X'}">{{game}}</span>
           </ng-container>
         </div>

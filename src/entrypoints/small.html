@@ -31,7 +31,6 @@
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const token = urlParams.get('app_token')
-  console.log("App token", token);
   document.getElementById('index').src = "../index.html?out=small&app_token=" + token;
 
 </script>

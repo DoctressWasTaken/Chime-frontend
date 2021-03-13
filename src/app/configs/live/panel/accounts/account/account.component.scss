@@ -1,0 +1,22 @@
+
+td.loading {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  left: 0%;
+  padding: 0;
+
+  div.progress {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 90%;
+    left: 5%;
+    margin-top: 45px;
+    height: 3px;
+
+    div.indeterminate {
+      margin: 2px;
+    }
+
+  }
+}

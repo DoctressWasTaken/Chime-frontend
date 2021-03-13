@@ -1,52 +1,25 @@
-<div class="wrapper" style="max-width: 500px; position: relative; height: 100vh;">
+<div class="container-fluid" *ngIf="manager.streamlabs.value">
+  <div class="row">
+    <app-accounts></app-accounts>
+    <app-status></app-status>
+    <app-connection-status></app-connection-status>
+    <app-notification></app-notification>
+    <app-sample></app-sample>
+    <app-disclaimer></app-disclaimer>
+  </div>
+</div>
+
+<!--
+<div *ngIf="manager.state.value == 'aaaa'" class="wrapper"
+     style="max-width: 500px; position: relative; height: 100vh;">
   <div class="menu">
-    <div class="connection_tracker"
-         [ngClass]="{
-      'disconnected': manager.status === 'disconnected',
-      'connecting': manager.status === 'connected',
-      'connected': manager.ready}">
+    <div class="connection_tracker">
       <ng-container *ngIf="manager.status === 'disconnected'">
         ❌
       </ng-container>
       <ng-container *ngIf="manager.status === 'connected'">
         ✅
       </ng-container>
-    </div>
-
-    <h1>Stats</h1>
-    <div class="stats">
-      <div class="numbers wins">
-        {{manager.wins}}
-      </div>
-      <div class="change wins" *ngIf="local_wins < 0">
-        {{local_wins}}
-      </div>
-      <div class="change wins" *ngIf="local_wins > 0">
-        +{{local_wins}}
-      </div>
-      <div class="buttons wins">
-        <button class="btn" (click)="change_wins(1)">+</button>
-        <button class="btn" (click)="change_wins(-1)">-</button>
-      </div>
-      <div class="numbers sep">
-        -
-      </div>
-      <div class="buttons reset">
-        <button class="btn" (click)="reset()">RESET</button>
-      </div>
-      <div class="numbers losses">
-        {{manager.losses}}
-      </div>
-      <div class="change losses" *ngIf="local_losses < 0">
-        {{local_losses}}
-      </div>
-      <div class="change losses" *ngIf="local_losses > 0">
-        +{{local_losses}}
-      </div>
-      <div class="buttons losses">
-        <button class="btn" (click)="change_losses(1)">+</button>
-        <button class="btn" (click)="change_losses(-1)">-</button>
-      </div>
     </div>
 
     <hr/>
@@ -71,7 +44,7 @@
         </div>
       </div>
       <table class="table">
-        <tr *ngFor="let acc of manager.accounts">
+        <tr *ngFor="let acc of []">
           <td>{{acc.name}}
             <span *ngIf="manager.currentId === acc.id" class="active_marker">Active</span></td>
           <td>{{acc.server}}</td>
@@ -101,3 +74,4 @@
     </div>
   </div>
 </div>
+!-->

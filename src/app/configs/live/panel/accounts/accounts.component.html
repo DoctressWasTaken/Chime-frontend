@@ -1,0 +1,41 @@
+<div class="col xl8 l8 m12 s12">
+  <div class="card blue-grey darken-2" id="accounts">
+    <div class="card-content white-text" style="position: relative">
+      <span class="card-title">Accounts</span>
+      <table *ngIf="accounts">
+        <thead>
+        <tr>
+          <td>Name</td>
+          <th>Server</th>
+          <th>Rank</th>
+          <th>Active</th>
+          <th>Lock</th>
+          <th>Config</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let account of accounts">
+          <tr app-account style="position: relative;" [account]="account"></tr>
+        </tbody>
+      </table>
+      <div class="row" style="margin: 0">
+        <form class="valign-wrapper">
+          <div class="input-field col s7">
+            <input id="summoner_name" type="text" name='summonerName' class="validate" [(ngModel)]='summoner_name'>
+            <label for="summoner_name">Summoner Name</label>
+          </div>
+          <div class="input-field col s12">
+            <select class="form-control" name='server' [(ngModel)]="server">
+              <option value="na">NA</option>
+              <option value="euw">EUW</option>
+              <option value="kr">KR</option>
+              <option value="kr">EUNE</option>
+            </select>
+          </div>
+          <div class="col s2">
+            <button class="btn btn-small waves-ripple" (click)="addAccount()">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

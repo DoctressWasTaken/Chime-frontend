@@ -1,0 +1,32 @@
+<td>{{account.summonerName}}</td>
+<td>{{account.server.toUpperCase()}}</td>
+<td>      <span *ngIf="rank">
+        {{rank.tier}}
+  <ng-container *ngIf="rank.tier != 'Grandmaster'">
+        {{rank.division}}
+          </ng-container>
+        <ng-container *ngIf="rank.lp">
+        {{rank.lp}} LP
+      </ng-container>
+      </span>
+</td>
+<td>
+  <ng-container *ngIf="account.active">
+    ✔
+  </ng-container>
+</td>
+<td>
+  <div class="switch">
+    <label>
+      <input ng type="checkbox" [disabled]="!account.id" [(ngModel)]="locked" (change)="lock()">
+      <span class="lever"></span>
+    </label>
+  </div>
+</td>
+
+<td>
+  <ng-container *ngIf="account.id">
+    <button (click)="remove()" class="btn-small">Delete</button>
+  </ng-container>
+  <!--<i class="material-icons grey-text" style="cursor: not-allowed" title="Disabled for now.">settings</i>!-->
+</td>

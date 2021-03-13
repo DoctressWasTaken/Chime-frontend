@@ -33,7 +33,6 @@
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const token = urlParams.get('app_token')
-  console.log("App token", token);
   document.getElementById('index').src = "../index.html?out=interface&app_token=" + token;
 
 </script>

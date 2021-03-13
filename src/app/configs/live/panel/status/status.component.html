@@ -1,0 +1,42 @@
+<div class="col xl4 l4 m6 s6">
+  <div class="card blue-grey darken-2" id="stats">
+    <div class="card-content white-text" style="position: relative">
+      <span class="card-title">Current Stats</span>
+      <button class="btn " (click)="reset()">
+        Reset
+      </button>
+      <ng-container *ngIf="stats">
+      <span class="numbers wins">
+            {{stats.wins}}
+          </span>
+        <span class="number gold-text" *ngIf="stats">
+            -
+          </span>
+        <span class="numbers losses">
+            {{stats.losses}}
+          </span>
+        <br/>
+        <span class="numbers grey-text text-lighten-1">
+            {{stats.rank.tier}} {{stats.rank.division}} {{stats.rank.lp}}
+          <ng-container *ngIf="stats.rank.lp"> LP </ng-container>
+          <br/><i *ngIf="stats.server">{{stats.server.toUpperCase()}}</i>
+          </span>
+      </ng-container>
+
+    <div class="card-action center-align">
+      <div style="float:left;">
+        <i class="white-text">Wins</i> <br/>
+        <a (click)="change_wins(-1)" class="btn-small waves-effect waves-light win"><i class="material-icons">remove</i></a>
+        <a (click)="change_wins(1)" class="btn-small waves-effect waves-light win"><i class="material-icons">add</i></a>
+      </div>
+        <div style="float:right">
+        <i class="white-text">Losses</i>  <br/>
+        <a (click)="change_losses(-1)" class="btn-small waves-effect waves-light loss"><i
+          class="material-icons">remove</i></a>
+        <a (click)="change_losses(1)" class="btn-small waves-effect waves-light loss"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+      <br/>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,32 @@
 @import '../../../colors.scss';
 
+
+body {
+  background: $background;
+}
+
+button.primary {
+  background: $gold;
+}
+
+.gold-text {
+  color: $gold;
+}
+
+div.container-fluid {
+  div.row {
+
+    div#stats {
+
+      .numbers {
+        font-size: 20px;
+      }
+
+    }
+  }
+}
+
+
 div.menu {
 
   background: $background;
@@ -15,9 +42,11 @@ div.menu {
   p {
     color: $gold;
   }
+
   .btn-outline-secondary {
     border-color: $gold;
     color: $gold;
+
     &:hover {
       background: rgba(181, 140, 74, 0.2)
     }
@@ -101,6 +130,7 @@ div.menu {
       }
     }
   }
+
   div.accounts {
     margin: 20px;
 
@@ -116,11 +146,13 @@ div.menu {
       }
     }
   }
+
   div.comments {
     padding: 10px 10%;
     font-size: 13px;
 
   }
+
   div.disclaimer {
     color: $gold;
     opacity: 0.5;
@@ -128,6 +160,7 @@ div.menu {
     position: absolute;
     bottom: 0;
   }
+
   div.connection_tracker {
     position: absolute;
     top: 5px;
@@ -138,9 +171,11 @@ div.menu {
     &.disconnected {
       color: $red;
     }
+
     &.connecting {
       color: yellow;
     }
+
     &.connected {
       color: green;
     }

@@ -1,0 +1,27 @@
+@import '../../../../../colors.scss';
+
+div.card-action {
+
+  .loss {
+    background: $red;
+  }
+
+  .win {
+    background: $blue;
+  }
+
+  a.btn-small {
+    margin: 2px;
+    zoom: 0.7;
+  }
+}
+
+div.card-content {
+  position: relative;
+  button {
+    margin: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}

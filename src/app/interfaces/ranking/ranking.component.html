@@ -1,24 +1,29 @@
-<div *ngIf="manager.currentAccount" style="padding:40px 20px;margin:10px;">
+<div *ngIf="stats"  style="padding:40px 20px;margin:10px;">
   <div class="widget">
     <div class="wl">
-      <span class="win">{{manager.wins}}</span>
+      <span class="win">{{stats.wins}}</span>
       <span>-</span>
-      <span class="loss">{{manager.losses}}</span>
+      <span class="loss">{{stats.losses}}</span>
     </div>
-    <div class="logo" [ngStyle]="{'background-image': 'url(\'assets/emblems/'+ manager.rank + '_Emblem.png\')'}">
+    <div class="logo" [ngStyle]="{'background-image': 'url(\'assets/emblems/'+ stats.rank.tier + '_Emblem.png\')'}">
     </div>
-    <div class="standing" [ngClass]="{'miniSeries': manager.currentAccount.miniSeries}">
-      <p id="server">
-        {{manager.currentAccount.server}}</p>
-      <span *ngIf="manager.currentAccount">
-                      {{manager.currentAccount.ranking}} </span>
-      <div class="series" *ngIf="manager.currentAccount">
-        <ng-container *ngIf="manager.currentAccount.miniSeries">
-          <ng-container *ngFor="let user of manager.currentAccount.miniSeries.split('')">
-      <span [ngClass]="{'win':  user === 'X', 'loss': user === 'O'}">
-        {{user}}
-      </span>
+    <div class="standing" [ngClass]="{'miniSeries': stats.miniSeries}">
+      <p id="server" *ngIf="stats.server">
+        {{stats.server.toUpperCase()}}</p>
+      <span *ngIf="stats.rank">
+        {{stats.rank.tier}}
+        <ng-container *ngIf="stats.rank.tier != 'Grandmaster' || stats.rank.tier != 'Master' || stats.rank.tier != 'Challenger'">
+        {{stats.rank.division}}
           </ng-container>
+        <ng-container *ngIf="stats.rank.lp">
+        {{stats.rank.lp}} LP
+      </ng-container>
+      </span>
+      <div class="series" *ngIf="stats.miniSeries">
+        <ng-container *ngFor="let match of stats.miniSeries.split('')">
+      <span [ngClass]="{'win':  match === 'X', 'loss': match === 'O'}">
+        {{match}}
+      </span>
         </ng-container>
       </div>
     </div>

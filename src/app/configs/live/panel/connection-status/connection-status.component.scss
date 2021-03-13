@@ -1,0 +1,19 @@
+@import '../../../../../colors.scss';
+
+div#connection {
+
+  div.card-content {
+
+    padding: 12px 24px;
+    span.card-title {
+      margin: 0;
+
+      &.connected {
+        color: $blue;
+      }
+      &.disconnected {
+        color: $red;
+      }
+    }
+  }
+}

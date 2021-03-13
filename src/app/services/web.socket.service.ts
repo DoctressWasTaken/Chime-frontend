@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Subject, BehaviorSubject} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {ManagerService} from './manager.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,42 +14,44 @@ export class WebSocketService {
   status: BehaviorSubject<any>;
   reconnect_delay: number;
 
+  manager: ManagerService;
+
   constructor() {
-    this.status = new BehaviorSubject(false);
-
-    console.log('Started websocket');
-    this.url = environment.url;
+    this.status = new BehaviorSubject<boolean>(null);
     this.reconnect_delay = 0;
-    this.ws = new WebSocket(this.url);
-
-    this.receiver = new Subject<any>();
   }
 
-  connect(this) {
-      this.ws = new WebSocket(this.url);
+  init(manager, url) {
+    this.url = url;
+    console.log('Initiated websocket service.');
+    this.manager = manager;
+  }
 
-      // Set ws to active
-      this.ws.onopen = function (event) {
-        console.log('Connected to websocket.');
-        this.reconnect_delay = 0;
-        this.status.next('connected');
-      }.bind(this);
+  connect() {
+    this.ws = new WebSocket(this.url);
 
-      // Pass messages to the receiver Subject to pass on.
-      this.ws.onmessage = function (event) {
-        this.receiver.next(
-          JSON.parse(event.data));
-      }.bind(this);
+    // Set ws to active
+    this.ws.onopen = function (event) {
+      console.log('Connected to websocket.');
+      this.reconnect_delay = 0;
+      this.status.next(true);
+    }.bind(this);
 
-      // On close trigger
-      this.ws.onclose = function (event) {
-        this.status.next('disconnected');
-        console.log('Connection lost.');
-        setTimeout(function () {
-          console.log('Attempting to reconnect (Timeout: ' + this.reconnect_delay + 's).');
-          this.reconnect_delay = Math.min(this.reconnect_delay + 1, 25);
-          this.connect();
-        }.bind(this), this.reconnect_delay * 1000);
-      }.bind(this);
+    // Pass messages to the receiver Subject to pass on.
+    this.ws.onmessage = function (event) {
+      this.manager.backend.next(
+        JSON.parse(event.data));
+    }.bind(this);
+
+    // On close trigger
+    this.ws.onclose = function (event) {
+      this.status.next(false);
+      console.log('Connection lost.');
+      setTimeout(function () {
+        console.log('Attempting to reconnect (Timeout: ' + this.reconnect_delay + 's).');
+        this.reconnect_delay = Math.min(this.reconnect_delay + 1, 25);
+        this.connect();
+      }.bind(this), this.reconnect_delay * 1000);
+    }.bind(this);
   }
 }

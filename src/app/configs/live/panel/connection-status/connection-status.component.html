@@ -1,0 +1,21 @@
+<div class="col xl4 l4 m6 s6">
+  <div class="card blue-grey darken-2" id="connection">
+    <div class="card-content white-text" style="position: relative">
+      <span class="card-title"
+            [ngClass]="{'initial': connected == null, 'disconnected': connected == false, 'connected': connected}">Automatic Tracking:
+        <ng-container *ngIf="connected == null">
+          connecting
+        </ng-container>
+        <ng-container *ngIf="connected">
+          connected
+        </ng-container>
+        <ng-container *ngIf="connected == false">
+          disconnected
+        </ng-container>
+      </span>
+      <ng-container *ngIf="connected == false">
+        There seems to be an issue with the connection to the backend. If this issue persists feel free to reach out.
+      </ng-container>
+    </div>
+  </div>
+</div>
