@@ -41,7 +41,6 @@ export class AccountsComponent implements OnInit {
     if (this.summoner_name && this.server) {
       this.account_manager.add_account(this.summoner_name, this.server.toLowerCase());
       this.summoner_name = '';
-      this.server = '';
     }
   }
 

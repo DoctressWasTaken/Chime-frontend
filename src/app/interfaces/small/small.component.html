@@ -13,7 +13,7 @@
       <span *ngIf="stats.rank">
         {{stats.rank.tier}}
         <ng-container
-          *ngIf="stats.rank.tier != 'Grandmaster' || stats.rank.tier != 'Master' || stats.rank.tier != 'Challenger'">
+          *ngIf="stats.rank.tier != 'Grandmaster' && stats.rank.tier != 'Master' && stats.rank.tier != 'Challenger'">
         {{stats.rank.division}}
           </ng-container>
         <ng-container *ngIf="stats.rank.lp">
