@@ -3,6 +3,8 @@ import {ManagerService} from '../manager.service';
 import {Account} from '../../classes/account';
 import {BehaviorSubject} from 'rxjs';
 import {StatsManagerService} from './stats-manager.service';
+import {BackendService} from '../backend.service';
+import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class AccountManagerService {
   save_delay: any;
 
   constructor(private manager: ManagerService,
-              private stats: StatsManagerService) {
+              private stats: StatsManagerService,
+              private backend: BackendService) {
     this.accounts = new BehaviorSubject<Account[]>([]);
     this.locked = new BehaviorSubject<any>(null);
 
@@ -36,11 +39,15 @@ export class AccountManagerService {
 
     });
     // Pass backend message to check for account updates
-    this.manager.backend.subscribe(message => {
-      if (message['tag'] == 'update') {
-        this.update_accounts(message['data']);
-      }
-    });
+    setInterval(function () {
+      this.backend.get_update().subscribe(accounts => {
+        this.update_accounts(accounts);
+      }, (error) => {
+        console.log(error);
+      }, () => {
+      });
+    }.bind(this), 5000);
+
     // Work through local
     this.manager.local.subscribe(message => {
       switch (message.type) {
@@ -86,28 +93,25 @@ export class AccountManagerService {
   }
 
   add_account(summonerName: string, server: string) {
-    this.manager.sendBackend(JSON.stringify({
-      'task': 'add_account',
-      'account': {
-        'summonerName': summonerName,
-        'server': server
+    this.backend.add_account(summonerName, server).subscribe(
+      response => {
+        let accounts: Account[] = this.accounts.value;
+        let account: Account = {id: response, summonerName: summonerName, server: server};
+        accounts.push(account);
+        this.update_accounts(accounts);
       }
-    }));
-    let sub_: any;
-    let id: any;
-    let accounts: Account[] = this.accounts.value;
-    accounts.push({summonerName: summonerName, server: server});
-    this.update_accounts(accounts);
+    );
   }
 
   remove_account(id: number) {
-    this.manager.sendBackend(JSON.stringify({
-      'task': 'remove_account',
-      'account': {
-        'id': id
+
+    this.backend.remove_account(id).subscribe(
+      response => () => {
+      }, () => {
+      }, () => {
+        this.manager.sendLocal('remove_account', [id]);
       }
-    }));
-    this.manager.sendLocal('remove_account', [id]);
+    );
   }
 
   calculate_stats(accounts) {
@@ -156,7 +160,6 @@ export class AccountManagerService {
       }
     }
     accounts = accounts_slimmed;
-    console.log(accounts);
     if (accounts.length == 0) {
       if (this.accounts.value.length != 0) {
         changed = true;
@@ -176,21 +179,23 @@ export class AccountManagerService {
         for (let account of accounts) {
           let account_missing = true;
           for (let account_local of this.accounts.value) {
-            if (account_local.id == account.id) {
-              if (account_local.hash !== account.hash) {
+            if (account_local.id == account.id && account_local.last_updated) {
+              if (account_local.last_updated !== account.last_updated) {
                 changed = true;
                 if (account_local.rank_SQ.division) {
                   this.stats.change_stats(
                     account.rank_SQ.wins - account_local.rank_SQ.wins
                     ,
-                    account.rank_SQ.losses - account_local.rank_SQ.losses
+                    account.rank_SQ.losses - account_local.rank_SQ.losses,
+                    this.stats.stats.value
                   );
                 }
                 if (account_local.rank_FQ.division) {
                   this.stats.change_stats(
                     account.rank_FQ.wins - account_local.rank_FQ.wins
                     ,
-                    account.rank_FQ.losses - account_local.rank_FQ.losses
+                    account.rank_FQ.losses - account_local.rank_FQ.losses,
+                    this.stats.stats.value
                   );
                 }
               }
@@ -213,50 +218,8 @@ export class AccountManagerService {
         changed = true;
       }
     }
-
     if (changed) {
-      console.log('Slimmmed', accounts_updated);
       this.accounts.next(accounts_updated);
     }
   }
-
 }
-
-
-/*
-
-  calculateStats(accounts: Account[], lockId: number) {
-    let lockedAccount: Account = null;
-    let activeAccount: Account = null;
-    let stats: Stats = {
-      wins: this.stats.value.wins,
-      losses: this.stats.value.losses,
-      rank: {tier: 'Unranked'}
-    };
-    for (let account of accounts) {
-      if (lockId && account.id == lockId) {
-        lockedAccount = account;
-      }
-      if (account.active) {
-        activeAccount = account;
-      }
-      if (account.rank_SQ) {
-        stats.wins = stats.wins + account.rank_SQ.wins;
-        stats.losses = stats.losses + account.rank_SQ.losses;
-      }
-      if (account.rank_FQ) {
-        stats.wins = stats.wins + account.rank_FQ.wins;
-        stats.losses = stats.losses + account.rank_FQ.losses;
-      }
-    }
-    if (lockedAccount) {
-      this.generateStats(lockedAccount, stats);
-    } else {
-      this.generateStats(activeAccount, stats);
-    }
-  }
-
-
-
- */
-

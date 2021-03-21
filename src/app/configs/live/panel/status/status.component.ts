@@ -27,11 +27,10 @@ export class StatusComponent implements OnInit {
   }
 
   change_wins(count) {
-    console.log('Wins, Trigger.')
-    this.manager.sendLocal('change_wins', [count]);
+    this.manager.sendLocal('change_wins', [count, this.stats_manager.stats.value]);
   }
 
   change_losses(count) {
-    this.manager.sendLocal('change_losses', [count]);
+    this.manager.sendLocal('change_losses', [count, this.stats_manager.stats.value]);
   }
 }

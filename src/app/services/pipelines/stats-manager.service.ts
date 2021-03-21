@@ -34,11 +34,11 @@ export class StatsManagerService {
         }
           break;
         case 'change_wins': {
-          this.change_stats(message.data[0], null);
+          this.change_stats(message.data[0], null, message.data[1]);
         }
           break;
         case 'change_losses': {
-          this.change_stats(null, message.data[0]);
+          this.change_stats(null, message.data[0], message.data[1]);
         }
           break;
       }
@@ -72,8 +72,10 @@ export class StatsManagerService {
     this.stats.next(stats);
   }
 
-  change_stats(wins: number = null, losses: number = null) {
+  change_stats(wins: number = null, losses: number = null, previous_stats) {
     let stats = this.stats.value;
+    stats.wins = previous_stats.wins;
+    stats.losses = previous_stats.losses;
     if (wins) {
       stats.wins = Math.max(0, stats.wins + wins);
     }

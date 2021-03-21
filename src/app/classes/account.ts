@@ -1,7 +1,7 @@
 import {Rank} from './rank';
 
 export interface Account {
-  id?: number;
+  id?: any;
   summonerName: string;
   active?: boolean;
   locked?: boolean;
@@ -12,4 +12,5 @@ export interface Account {
   ignore_fq?: boolean;
   hash?: string;
   last_updated?: number;
+  current_champ?: number;
 }

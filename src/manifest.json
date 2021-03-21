@@ -1,6 +1,6 @@
 {
   "name": "Chime",
-  "version": "0.3.4b",
+  "version": "0.5.0b",
   "icon": "assets/Logo_270_170_transparent.png",
   "buildPath": "",
   "permissions": ["slobs.scenes-sources", "slobs.obs-settings"],

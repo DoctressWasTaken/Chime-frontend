@@ -19,6 +19,7 @@ import { ResetComponent } from './configs/live/panel/reset/reset.component';
 import { SampleComponent } from './configs/live/panel/sample/sample.component';
 import { NotificationComponent } from './configs/live/panel/notification/notification.component';
 import {DisclaimerComponent} from './configs/live/panel/disclaimer/disclaimer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {DisclaimerComponent} from './configs/live/panel/disclaimer/disclaimer.co
     RouterModule.forRoot([]),
     FormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

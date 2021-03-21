@@ -10,17 +10,18 @@
     <div class="standing" [ngClass]="{'miniSeries': stats.miniSeries}">
       <p id="server" *ngIf="stats.server">
         {{stats.server.toUpperCase()}}</p>
-      <span *ngIf="stats.rank">
+      <span *ngIf="stats.rank.division">
         {{stats.rank.tier}}
         <ng-container
           *ngIf="stats.rank.tier != 'Grandmaster' && stats.rank.tier != 'Master' && stats.rank.tier != 'Challenger'">
         {{stats.rank.division}}
           </ng-container>
-        <ng-container *ngIf="stats.rank.lp">
         {{stats.rank.lp}} LP
-      </ng-container>
       </span>
-      <div class="series" *ngIf="stats.rank.miniSeries">
+      <span *ngIf="!stats.rank.division">
+          {{stats.rank.tier}}
+      </span>
+      <div class="series" *ngIf="stats.miniSeries">
         <ng-container *ngFor="let match of stats.rank.miniSeries.split('')">
       <span [ngClass]="{'win':  match === 'X', 'loss': match === 'O'}">
         {{match}}
